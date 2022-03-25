@@ -14,8 +14,8 @@ function ErrorPopup({ message }) {
     return (
         <div className={`error-popup ${message && 'error-popup_opened'}`}>
             <div className='error-popup__container'>
-                <button className='error-popup__button' type='button' onClick={handleClosePopup}>&times;</button>
-                <span>{message}</span>
+                <button className='error-popup__button-close' type='button' onClick={handleClosePopup}>&times;</button>
+                <span className='error-popup__text'>{message}</span>
             </div>
         </div>
     );

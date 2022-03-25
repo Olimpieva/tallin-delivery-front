@@ -32,8 +32,8 @@ function Login(props) {
         <div className='login-page'>
             <Header />
             <main className="login-page__content">
-                <form className='login-page__form' onSubmit={handleLogin}>
-                    <input className="input-field__input" id="username"
+                <form className='form' onSubmit={handleLogin}>
+                    <input className="form__input" id="username"
                         type='text'
                         name='username'
                         placeholder='login'
@@ -43,7 +43,7 @@ function Login(props) {
                         value={loginData.username}
                         onChange={handleInputChange}
                     />
-                    <input className="input-field__input" id="password"
+                    <input className="form__input" id="password"
                         type='password'
                         name='password'
                         placeholder='password'
@@ -53,7 +53,7 @@ function Login(props) {
                         value={loginData.password}
                         onChange={handleInputChange}
                     />
-                    <button className='login-page__button' type='submit'>Sign In</button>
+                    <button className='form__button' type='submit'>Sign In</button>
                 </form>
                 <ErrorPopup message={error.message} />
             </main>

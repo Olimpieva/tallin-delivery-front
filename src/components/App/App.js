@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+
 import Login from '../Login/Login';
 
 import './App.css';
 
 function App() {
 
-  const dispatch = useDispatch()
-
   return (
-    <div className="App">
-      App
+    <div className="app">
       <Routes>
-        <Route path="/" element={<div>Main Page</div>} />
+        <Route path="/" element={<div></div>} />
         <Route path="/signin" element={<Login />} />
         <Route path="*" element={<div>Not Found Page</div>} />
       </Routes>

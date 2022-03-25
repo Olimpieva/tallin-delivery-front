@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, userAuth } from '../../redux/actions';
-import { currentUserSelector, errorSelector } from '../../redux/selectors';
+import { login } from '../../redux/actions';
+import { errorSelector } from '../../redux/selectors';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
 
 import Header from '../Header/Header';
@@ -11,15 +11,13 @@ import './Login.css';
 const initialState = { username: "", password: "" };
 
 function Login(props) {
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
+    const error = useSelector(errorSelector);
     const [userData, setUserData] = useState(initialState);
 
-    const currentUser = useSelector(currentUserSelector);
-    const error = useSelector(errorSelector);
-
     const handleInputChange = (event) => {
-        const { name, value } = event.target
+        const { name, value } = event.target;
         setUserData((prevState) => ({ ...prevState, [name]: value }));
     };
 
@@ -58,7 +56,6 @@ function Login(props) {
                 <ErrorPopup message={error.message} />
             </main>
         </div>
-
     );
 };
 

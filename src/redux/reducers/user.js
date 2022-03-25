@@ -1,16 +1,16 @@
 import { LOGIN, LOGOUT, } from "../actions/actionTypes";
 
 const initialState = {
-    token: null,
+    jwt: null,
 };
 
 const user = (state = initialState, action) => {
 
     switch (action.type) {
         case LOGIN:
-            return { ...state, token: action.payload };
+            return { ...state, jwt: action.payload };
         case LOGOUT:
-            return { ...state, token: null }
+            return { ...state, jwt: null }
         default:
             return state;
     };

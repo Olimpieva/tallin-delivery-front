@@ -6,7 +6,7 @@ class MainApi {
     }
 
     async _sendRequest(path, requestOptions) {
-        let data;
+
         try {
             const response = await fetch(`${this._url}/${path}`, { ...requestOptions });
 
@@ -14,13 +14,13 @@ class MainApi {
                 throw response;
             }
 
-            // data = await response.json();
-            data = await response.text();
+            const data = path === 'login/student' ? await response.text() : await response.json();
+
+            return data;
         } catch (error) {
             throw error;
-        }
-        return data;
-    }
+        };
+    };
 
     login({ username, password }) {
 
@@ -34,6 +34,34 @@ class MainApi {
                 username,
                 password,
             })
+        });
+    };
+
+    createOrder({ order: { name, phone, comment }, jwt }) {
+
+        return this._sendRequest(`orders`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwt}`,
+            },
+            body: JSON.stringify({
+                status: 'OPEN',
+                customerName: name,
+                customerPhone: phone,
+                comment,
+            }),
+        });
+    };
+
+    getOrders({ jwt }) {
+
+        return this._sendRequest(`orders`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwt}`,
+            }
         });
     };
 

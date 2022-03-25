@@ -1,20 +1,21 @@
 import api from "../../utils/Api";
-import { LOGIN, RESET_REQUEST_ERROR } from "./actionTypes";
+import { LOGIN, LOGOUT, RESET_REQUEST_ERROR } from "./actionTypes";
 import handleError from "./errorHandler";
 
-export const userAuth = (userData) => async dispatch => {
+export const login = (userData) => async dispatch => {
 
     try {
         const token = await api.login(userData);
+        localStorage.setItem('token', token);
         dispatch({ type: LOGIN, payload: token });
     } catch (error) {
-        console.log({ error })
-        dispatch(handleError({ errorCode: error.status || 500, action: LOGIN }))
+        dispatch(handleError({ errorCode: error.status || 500, action: LOGIN }));
     };
 };
 
-export const resetError = () => {
-    console.log('Ya tut')
-    console.log({ type: RESET_REQUEST_ERROR })
-    return ({ type: RESET_REQUEST_ERROR })
-};
+export const logout = () => {
+    localStorage.clear();
+    return { type: LOGOUT };
+}
+
+export const resetError = () => ({ type: RESET_REQUEST_ERROR });

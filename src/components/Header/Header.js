@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { ReactComponent as MainLogo } from '../../images/logo/main-logo.svg';
 
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/actions';
 
 const initialState = {
     training: false,
     title: true,
-    buttons: false
+    buttons: true
 }
 
 function Header(props) {
 
+    const { pathname } = useLocation();
+
     const [isElementShown, setIsElementShown] = useState(initialState);
+
+    const dispatch = useDispatch();
+
+    const exitButtonClickHandler = () => {
+        dispatch(logout());
+    };
 
     return (
         <div className="header">
@@ -27,7 +37,7 @@ function Header(props) {
             </h1>
             <div className={`header__buttons ${isElementShown.buttons && 'header__buttons_shown'}`}>
                 <button className='header__button_check-order'>Статус</button>
-                <Link to="/signin" title="Выход из аккаунта" className="header__button_exit" />
+                <Link to="/signin" title="Выход из аккаунта" className="header__button_exit" onClick={exitButtonClickHandler} />
             </div>
         </div>
     );

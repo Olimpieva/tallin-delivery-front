@@ -3,14 +3,14 @@
     height: 100vh;
 }
 
-.login-page__content {
+.login {
     width: 100%;
     padding-top: 130px;
     display: flex;
     justify-content: center;
 }
 
-.form {
+.login__form {
     width: 20%;
     min-width: 278px;
     box-sizing: border-box;
@@ -20,7 +20,7 @@
     justify-content: center;
 }
 
-.form__input {
+.login__input {
     width: 100%;
     margin: 0 0 19px;
     padding: 12px 20px 13px;
@@ -32,9 +32,8 @@
 
 } 
 
-.form__button {
+.login__button {
     width: 100%;
-    margin: 0;
     padding: 11px 0 14px;
     background: #333;
     border: none;
@@ -42,4 +41,10 @@
     font-size: 20px;
     line-height: 1.18;
     color: #FFF;
+    cursor: pointer;
+    transition: opacity 0.3s ease-out;
+}
+
+.login__button:hover {
+    opacity: .9;
 }

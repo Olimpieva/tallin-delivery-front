@@ -1,5 +1,8 @@
 import { combineReducers } from "redux";
+import user from "./user";
+import error from "./error";
 
 export default combineReducers({
-    stupedReducer: () => 'Are you happy?',
+    user,
+    error,
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { resetError } from '../../redux/actions';
+import Popup from '../Popup/Popup';
 
 import './ErrorPopup.css';
 
@@ -12,12 +13,9 @@ function ErrorPopup({ message }) {
     }
 
     return (
-        <div className={`error-popup ${message && 'error-popup_opened'}`}>
-            <div className='error-popup__container'>
-                <button className='error-popup__button-close' type='button' onClick={handleClosePopup}>&times;</button>
-                <span className='error-popup__text'>{message}</span>
-            </div>
-        </div>
+        <Popup isOpened={message} onClose={handleClosePopup}>
+            <span className='error-popup__text'>{message}</span>
+        </Popup>
     );
 };
 

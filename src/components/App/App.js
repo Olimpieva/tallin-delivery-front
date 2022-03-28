@@ -6,6 +6,7 @@ import { currentUserSelector } from '../../redux/selectors';
 
 import Login from '../Login/Login';
 import NewOrder from '../NewOrder/NewOrder';
+import OrderDetails from '../OrderDetails/OrderDetails';
 
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<NewOrder />} />
         <Route path="/signin" element={<Login />} />
+        <Route path="/order" element={<OrderDetails />} />
         <Route path="*" element={<div>Not Found Page</div>} />
       </Routes>
     </div>

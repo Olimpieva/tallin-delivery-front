@@ -19,6 +19,7 @@
     pointer-events: none;
     display: block;
     align-self: flex-start;
+    font-family: 'Mariad Pro', 'Helvetica', sans-serif;
     font-size: 21px;
     line-height: 1.2;
     text-transform: uppercase;
@@ -58,10 +59,11 @@
 .header__button_check-order {
     min-width: 174px;
     margin: 0 0 11px;
-    padding: 3px 0 6px;
+    padding: 6px;
     background: #FDCC00;
     border: none;
     border-radius: 5px;
+    font-family: 'Mariad Pro', 'Helvetica', sans-serif;
     font-size: 24px;
     line-height: 1.2;
     align-self: flex-end;

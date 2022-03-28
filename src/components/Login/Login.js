@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../redux/actions';
 import { errorSelector } from '../../redux/selectors';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
@@ -12,6 +13,7 @@ const initialState = { username: "", password: "" };
 
 function Login(props) {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const error = useSelector(errorSelector);
     const [userData, setUserData] = useState(initialState);
@@ -24,6 +26,7 @@ function Login(props) {
     const handleLogin = (event) => {
         event.preventDefault();
         dispatch(login(userData));
+        navigate('/')
     };
 
     return (

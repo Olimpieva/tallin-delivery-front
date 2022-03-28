@@ -1,5 +1,5 @@
 import api from "../../utils/Api";
-import { CREATE_ORDER, LOGIN, LOGOUT, RESET_REQUEST_ERROR } from "./actionTypes";
+import { CREATE_ORDER, FAILURE, GET_ORDER_BY_ID, LOGIN, LOGOUT, REQUEST, RESET_REQUEST_ERROR, SUCCESS } from "./actionTypes";
 import handleError from "./errorHandler";
 
 export const setAuthToken = (token) => ({ type: LOGIN, payload: token });
@@ -32,9 +32,31 @@ export const createOrder = (orderData) => async dispatch => {
     };
 };
 
+export const getOrderById = (orderData) => async (dispatch, getState) => {
+    const { loading } = getState();
+
+    if (loading) {
+        return;
+    }
+
+    dispatch({ type: GET_ORDER_BY_ID + REQUEST });
+
+    try {
+        const order = await api.getOrderById(orderData);
+        console.log({ 'after api': order });
+        dispatch({ type: GET_ORDER_BY_ID + SUCCESS, payload: order });
+    } catch (error) {
+        dispatch({
+            type: GET_ORDER_BY_ID + FAILURE,
+            payload: handleError({ errorCode: error.status || 500, action: GET_ORDER_BY_ID })
+        })
+    };
+};
+
 export const resetError = () => ({ type: RESET_REQUEST_ERROR });
 
 export const getOrders = (token) => async dispatch => {
+    console.log(token)
 
     try {
         const orders = await api.getOrders(token);

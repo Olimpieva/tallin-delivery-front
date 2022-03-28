@@ -5,3 +5,10 @@ export const requestErrorMessages = {
     invalidAuthUserData: () => 'Incorrect credentials',
     otherError: ({ errorCode, action }) => `Sorry, an error ${errorCode} occurred while ${action}`,
 };
+
+export const orderStatus = {
+    OPEN: 'OPEN',
+    ACCEPTED: 'ACCEPTED',
+    INPROGRESS: 'INPROGRESS',
+    DELIVERED: 'DELIVERED'
+}

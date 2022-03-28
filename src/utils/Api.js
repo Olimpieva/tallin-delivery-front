@@ -39,6 +39,8 @@ class MainApi {
 
     createOrder({ order: { name, phone, comment }, jwt }) {
 
+        console.log({ name, phone, comment }, jwt)
+
         return this._sendRequest(`orders`, {
             method: 'POST',
             headers: {
@@ -54,6 +56,16 @@ class MainApi {
         });
     };
 
+    getOrderById({ orderId, jwt }) {
+        return this._sendRequest(`orders/${orderId}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwt}`,
+            },
+        });
+    };
+
     getOrders({ jwt }) {
 
         return this._sendRequest(`orders`, {
@@ -61,7 +73,7 @@ class MainApi {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${jwt}`,
-            }
+            },
         });
     };
 

@@ -18,8 +18,6 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(currentUserSelector);
 
-  console.log({ 111: user })
-
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
 
@@ -46,7 +44,6 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
       }
-
     </div>
   );
 }

@@ -48,6 +48,7 @@
 }
 
 .header__buttons {
+    align-self: right;
     opacity: 0;
     pointer-events: none;
     display: grid;
@@ -61,7 +62,7 @@
 }
 
 .header__button_check-order {
-    min-width: 174px;
+    min-width: 190px;
     margin: 0 0 11px;
     padding: 6px;
     background: #FDCC00;

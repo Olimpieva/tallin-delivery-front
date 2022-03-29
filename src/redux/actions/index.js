@@ -1,5 +1,15 @@
+import {
+    LOGIN,
+    LOGOUT,
+    CREATE_ORDER,
+    GET_ORDER_BY_ID,
+    REQUEST,
+    SUCCESS,
+    FAILURE,
+    CLEAR_ORDER,
+    RESET_ERROR,
+} from "./actionTypes";
 import api from "../../utils/Api";
-import { CLEAR_ORDER, CREATE_ORDER, FAILURE, GET_ORDER_BY_ID, LOGIN, LOGOUT, REQUEST, RESET_ERROR, SUCCESS } from "./actionTypes";
 import handleError from "./errorHandler";
 
 export const setLoggedIn = () => ({ type: LOGIN + SUCCESS });
@@ -15,9 +25,8 @@ export const checkToken = () => async (dispatch, getState) => {
     }
 
     try {
-        const orders = await api.getAllOrders();
+        await api.getAllOrders();
         dispatch(setLoggedIn());
-        console.log({ orders });
     } catch (error) {
         dispatch({ type: LOGIN + FAILURE });
     };
@@ -49,11 +58,8 @@ export const logout = () => {
 
 export const createOrder = (orderData) => async dispatch => {
 
-    console.log({ orderData })
-
     try {
         const newOrder = await api.createOrder(orderData);
-        console.log({ newOrder });
         dispatch({ type: CREATE_ORDER + SUCCESS, payload: newOrder });
     } catch (error) {
         dispatch(handleError({ errorCode: error.status || 500, action: CREATE_ORDER }));

@@ -6,7 +6,7 @@ function ProtectedRoute({ loggedIn }) {
 
     if (!loggedIn) {
         return <Navigate to="/signin" />
-    }
+    };
 
     return (
         <Outlet />

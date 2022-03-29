@@ -1,9 +1,3 @@
-export const currentUserSelector = state => {
-    console.log({ state })
-    return state.user
-};
+export const currentUserSelector = state => state.user;
 export const currentOrderSelector = state => state.currentOrder;
-export const newOrderSelector = state => {
-    console.log({ state })
-    return state.newOrder
-};
+export const newOrderSelector = state => state.newOrder;

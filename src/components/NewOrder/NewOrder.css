@@ -23,7 +23,8 @@
 }
 
 .new-order__input {
-    margin: 0 0 27px;
+    width: 100%;
+    box-sizing: border-box;
     padding: 9px 12px 7px;
     border: 1px solid #333333;
     border-radius: 6px;
@@ -31,8 +32,10 @@
     line-height: 1.18;
     color: #333;
 }
-
-.new-order__input:last-of-type {
+.new-order__fieldset {
+    margin-bottom: 27px;
+}
+.new-order__fieldse:last-of-type {
     margin-bottom: 33px;
 }
 
@@ -58,3 +61,10 @@
 .new-order__button:hover {
     opacity: .8;
 }
+
+.new-order__button:disabled {
+    background-color: #737373;
+    color: #dadada;
+    pointer-events: none;
+    user-select: none;
+  }

@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import { logout } from '../../redux/actions';
 import OrderSearchPopup from '../OrderSearchPopup/OrderSearchPopup';
-import { ReactComponent as MainLogo } from '../../images/logo/main-logo.svg';
 
 import './Header.css';
 
@@ -29,7 +28,6 @@ function Header({ hideTitle = false, hideInfo = false }) {
         <div className="header">
             <div className='logo_main'>
                 <Link to="/" title="Главная страница" className='logo_main__image' />
-                {/* <MainLogo className='logo_main__image' /> */}
                 <span className={`logo_main__text ${!hideInfo && 'logo_main__text_shown'}`}>Тренажёр</span>
             </div>
             {!hideTitle &&

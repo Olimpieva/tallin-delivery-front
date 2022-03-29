@@ -7,7 +7,7 @@ const handleError = ({ errorCode = 500, action }) => {
         type: action + FAILURE,
         payload: (() => {
             switch (errorCode) {
-                case 404 && action.type === GET_ORDER_BY_ID:
+                case 404:
                     return requestErrorMessages.orderNotFound();
                 case 401:
                     return requestErrorMessages.invalidAuthUserData();

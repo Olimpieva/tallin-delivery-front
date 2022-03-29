@@ -20,16 +20,26 @@
     justify-content: center;
 }
 
+.fieldset {
+    width: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.login__fieldset {
+    margin-bottom: 20px;
+}
+
 .login__input {
     width: 100%;
-    margin: 0 0 19px;
     padding: 12px 20px 13px;
     box-sizing: border-box;
     border: 1px solid #333333;
     border-radius: 6px;
     font-size: 20px;
     line-height: 1.18;
-
 } 
 
 .login__button {
@@ -48,3 +58,10 @@
 .login__button:hover {
     opacity: .9;
 }
+
+.login__button:disabled {
+    background-color: #737373;
+    color: #dadada;
+    pointer-events: none;
+    user-select: none;
+  }

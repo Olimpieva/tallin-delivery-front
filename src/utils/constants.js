@@ -13,3 +13,10 @@ export const orderStatus = {
     INPROGRESS: 'INPROGRESS',
     DELIVERED: 'DELIVERED'
 };
+
+export const validationErrorMessages = {
+    valueMissing: () => 'Поле должно быть заполнено.',
+    tooShort: ({ minLength }) => `Поле должно содержать минимум ${minLength} символ${minLength < 5 ? `а` : `ов`}`,
+    patternMismatch: () => 'Поле заполнено некорректно.',
+    typeMismatch: () => 'Поле заполнено некорректно.'
+};

@@ -1,3 +1,5 @@
+import api from "../../utils/Api";
+import handleError from "./errorHandler";
 import {
     LOGIN,
     LOGOUT,
@@ -9,8 +11,6 @@ import {
     CLEAR_ORDER,
     RESET_ERROR,
 } from "./actionTypes";
-import api from "../../utils/Api";
-import handleError from "./errorHandler";
 
 export const setLoggedIn = () => ({ type: LOGIN + SUCCESS });
 
@@ -22,7 +22,13 @@ export const checkToken = () => async (dispatch, getState) => {
 
     if (loading) {
         return;
-    }
+    };
+
+    const jwt = localStorage.getItem('jwt');
+
+    if (!jwt) {
+        return dispatch({ type: LOGIN + FAILURE });
+    };
 
     try {
         await api.getAllOrders();

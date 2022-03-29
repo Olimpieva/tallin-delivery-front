@@ -19,18 +19,13 @@ function App() {
   const user = useSelector(currentUserSelector);
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-
-    if (jwt) {
-      dispatch(checkToken());
-    }
-
+    dispatch(checkToken());
   }, [dispatch]);
 
   return (
     <div className="app">
       {
-        user.loading ?
+        user.loading || user.loggedIn === null ?
           <div className='app__preloader'>
             <Preloader />
           </div>

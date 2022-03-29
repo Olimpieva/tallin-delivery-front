@@ -1,16 +1,24 @@
-import { LOGIN, LOGOUT, } from "../actions/actionTypes";
+import { FAILURE, LOGIN, LOGOUT, REQUEST, RESET_ERROR, SUCCESS, } from "../actions/actionTypes";
 
 const initialState = {
-    jwt: null,
+    loggedIn: null,
+    loading: false,
+    error: null,
 };
 
 const user = (state = initialState, action) => {
 
     switch (action.type) {
-        case LOGIN:
-            return { ...state, jwt: action.payload };
+        case LOGIN + REQUEST:
+            return { ...state, loading: true, error: null };
+        case LOGIN + SUCCESS:
+            return { ...state, loggedIn: true, loading: false, error: null };
+        case LOGIN + FAILURE:
+            return { ...state, loggedIn: false, loading: false, error: action.payload || null };
         case LOGOUT:
-            return { ...state, jwt: null }
+            return { ...state, loggedIn: false };
+        case RESET_ERROR:
+            return { ...state, error: null };
         default:
             return state;
     };

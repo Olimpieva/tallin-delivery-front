@@ -1,37 +1,52 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import { setAuthToken } from '../../redux/actions';
-import { currentUserSelector } from '../../redux/selectors';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { checkToken } from '../../redux/actions';
+import { currentUserSelector } from '../../redux/selectors';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Login from '../Login/Login';
 import NewOrder from '../NewOrder/NewOrder';
+import NotFound from '../NotFound/NotFound';
 import OrderDetails from '../OrderDetails/OrderDetails';
+import Preloader from '../Preloader/Preloader';
 
 import './App.css';
 
 function App() {
 
   const dispatch = useDispatch();
-  const token = useSelector(currentUserSelector);
+  const user = useSelector(currentUserSelector);
+
+  console.log({ 111: user })
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
 
     if (jwt) {
-      dispatch(setAuthToken(jwt));
-    };
+      dispatch(checkToken());
+    }
 
   }, [dispatch]);
 
   return (
     <div className="app">
-      <Routes>
-        <Route path="/" element={<NewOrder />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/order" element={<OrderDetails />} />
-        <Route path="*" element={<div>Not Found Page</div>} />
-      </Routes>
+      {
+        user.loading ?
+          <div className='app__preloader'>
+            <Preloader />
+          </div>
+          :
+          <Routes>
+            <Route element={<ProtectedRoute loggedIn={user.loggedIn} />} >
+              <Route path="/" element={<NewOrder />} />
+              <Route path="/order/:id" element={<OrderDetails />} />
+            </Route>
+            <Route path="/signin" element={user.loggedIn ? <Navigate replace to="/" /> : <Login />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+      }
+
     </div>
   );
 }

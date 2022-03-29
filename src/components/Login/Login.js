@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { login } from '../../redux/actions';
-import { errorSelector } from '../../redux/selectors';
+import { currentUserSelector } from '../../redux/selectors';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
 
 import Header from '../Header/Header';
@@ -13,9 +13,8 @@ const initialState = { username: "", password: "" };
 
 function Login(props) {
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const error = useSelector(errorSelector);
+    const { error } = useSelector(currentUserSelector);
     const [userData, setUserData] = useState(initialState);
 
     const handleInputChange = (event) => {
@@ -23,15 +22,14 @@ function Login(props) {
         setUserData((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
         dispatch(login(userData));
-        navigate('/')
     };
 
     return (
         <div className='login-page'>
-            <Header />
+            <Header hideInfo />
             <main className="login">
                 <form className='login__form' onSubmit={handleLogin}>
                     <input className="login__input" id="username"
@@ -56,7 +54,7 @@ function Login(props) {
                     />
                     <button className='login__button' type='submit'>Sign In</button>
                 </form>
-                <ErrorPopup message={error.message} />
+                <ErrorPopup message={error} />
             </main>
         </div>
     );

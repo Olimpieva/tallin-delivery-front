@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getOrderById } from '../../redux/actions';
-import { currentUserSelector } from '../../redux/selectors';
 
 import Popup from '../Popup/Popup';
 
@@ -11,23 +8,16 @@ import './OrderSearchPopup.css';
 function OrderSearchPopup({ isOpened, onClose }) {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { jwt } = useSelector(currentUserSelector);
     const [orderId, setOrderId] = useState(null);
 
     const handleInputChange = (event) => {
         setOrderId(event.target.value);
     };
 
-    console.log({ orderId })
-    console.log({ orderId, jwt })
-
     const handleOrderSearch = (event) => {
         event.preventDefault();
-        dispatch(getOrderById({ orderId, jwt }));
-        console.log('Ya doshel')
         onClose();
-        navigate('/order');
+        navigate(`/order/${orderId}`);
     };
 
     return (
@@ -49,4 +39,4 @@ function OrderSearchPopup({ isOpened, onClose }) {
     );
 };
 
-export default OrderSearchPopup;
+export default React.memo(OrderSearchPopup);

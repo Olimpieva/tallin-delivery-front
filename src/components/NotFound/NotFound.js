@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ReactComponent as NotFoundImage } from '../../images/order-not-found.svg';
 import Header from '../Header/Header';
 
 import './NotFound.css';
 
-function NotFound(props) {
+function NotFound({ title = 'Страница не найдена', message = '' }) {
 
     return (
         <div className='not-found-page'>
-            <Header />
+            <Header hideTitle />
             <main className='not-found'>
-                <div>Order Not Found</div>
-                <NotFoundImage />
+                <h1 className='not-found__title'>{title}</h1>
+                <span className='not-found__description'>{message}</span>
+                <NotFoundImage className='not-found__image' />
             </main>
         </div>
     );

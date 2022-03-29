@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import user from "./user";
-import order from "./order";
-import error from "./error";
+import currentOrder from "./currentOrder";
+import newOrder from "./newOrder";
 
 export default combineReducers({
     user,
-    order,
-    error,
+    currentOrder,
+    newOrder,
 });

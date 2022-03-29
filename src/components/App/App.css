@@ -10,6 +10,7 @@
   font-family: 'Roboto', 'Helvetica', sans-serif;
   font-weight: 400;
   color: #333333;
+  
   background-color: #FFF;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
@@ -18,4 +19,8 @@
   -ms-text-size-adjust: 100%;
   position: relative;
   transition: all 0.3s ease-out;
+}
+
+.app__preloader {
+  height: 100vh;
 }

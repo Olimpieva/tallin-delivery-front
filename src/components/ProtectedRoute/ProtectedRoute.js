@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router-dom";
 function ProtectedRoute({ loggedIn }) {
 
     if (!loggedIn) {
-        return <Navigate to="/" />
+        return <Navigate to="/signin" />
     }
 
     return (

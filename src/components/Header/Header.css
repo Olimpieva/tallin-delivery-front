@@ -11,7 +11,11 @@
 }
 
 .logo_main__image {
-    padding: 13px 0 0 21px;
+    width: 89px;
+    height: 82px;
+    margin: 13px 0 0 21px;
+    background: url("../../images/logo/main-logo.svg") center no-repeat;
+    cursor: pointer;
 }
 
 .logo_main__text {
@@ -67,6 +71,8 @@
     font-size: 24px;
     line-height: 1.2;
     align-self: flex-end;
+    cursor: pointer;
+    transition: opacity .3s ease-in-out;
 }
 
 .header__button_exit {
@@ -76,4 +82,10 @@
     background-image: url("../../images/logo/exit-logo.svg");
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
+    transition: opacity .3s ease-in-out;
+}
+
+.header__button_exit:hover, .header__button_check-order:hover {
+    opacity: .8;;
 }

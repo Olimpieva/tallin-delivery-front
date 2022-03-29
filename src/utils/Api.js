@@ -15,7 +15,6 @@ class MainApi {
             }
 
             const data = path === 'login/student' ? await response.text() : await response.json();
-
             return data;
         } catch (error) {
             throw error;
@@ -37,15 +36,13 @@ class MainApi {
         });
     };
 
-    createOrder({ order: { name, phone, comment }, jwt }) {
-
-        console.log({ name, phone, comment }, jwt)
+    createOrder({ name, phone, comment }) {
 
         return this._sendRequest(`orders`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${jwt}`,
+                "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
             },
             body: JSON.stringify({
                 status: 'OPEN',
@@ -56,23 +53,24 @@ class MainApi {
         });
     };
 
-    getOrderById({ orderId, jwt }) {
+    getOrderById({ orderId }) {
+
         return this._sendRequest(`orders/${orderId}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${jwt}`,
+                "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
             },
         });
     };
 
-    getOrders({ jwt }) {
+    getAllOrders() {
 
         return this._sendRequest(`orders`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${jwt}`,
+                "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
             },
         });
     };

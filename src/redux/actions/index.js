@@ -1,15 +1,42 @@
 import api from "../../utils/Api";
-import { CREATE_ORDER, FAILURE, GET_ORDER_BY_ID, LOGIN, LOGOUT, REQUEST, RESET_REQUEST_ERROR, SUCCESS } from "./actionTypes";
+import { CLEAR_ORDER, CREATE_ORDER, FAILURE, GET_ORDER_BY_ID, LOGIN, LOGOUT, REQUEST, RESET_ERROR, SUCCESS } from "./actionTypes";
 import handleError from "./errorHandler";
 
-export const setAuthToken = (token) => ({ type: LOGIN, payload: token });
+export const setLoggedIn = () => ({ type: LOGIN + SUCCESS });
 
-export const login = (userData) => async dispatch => {
+export const checkToken = () => async (dispatch, getState) => {
+
+    const { loading } = getState();
+
+    dispatch({ type: LOGIN + REQUEST });
+
+    if (loading) {
+        return;
+    }
+
+    try {
+        const orders = await api.getAllOrders();
+        dispatch(setLoggedIn());
+        console.log({ orders });
+    } catch (error) {
+        dispatch({ type: LOGIN + FAILURE });
+    };
+};
+
+export const login = (userData) => async (dispatch, getState) => {
+
+    const { loading } = getState();
+
+    dispatch({ type: LOGIN + REQUEST });
+
+    if (loading) {
+        return;
+    };
 
     try {
         const token = await api.login(userData);
         localStorage.setItem('jwt', token);
-        dispatch(setAuthToken(token));
+        dispatch(setLoggedIn());
     } catch (error) {
         dispatch(handleError({ errorCode: error.status || 500, action: LOGIN }));
     };
@@ -27,6 +54,7 @@ export const createOrder = (orderData) => async dispatch => {
     try {
         const newOrder = await api.createOrder(orderData);
         console.log({ newOrder });
+        dispatch({ type: CREATE_ORDER + SUCCESS, payload: newOrder });
     } catch (error) {
         dispatch(handleError({ errorCode: error.status || 500, action: CREATE_ORDER }));
     };
@@ -37,31 +65,20 @@ export const getOrderById = (orderData) => async (dispatch, getState) => {
 
     if (loading) {
         return;
-    }
+    };
 
     dispatch({ type: GET_ORDER_BY_ID + REQUEST });
 
     try {
         const order = await api.getOrderById(orderData);
-        console.log({ 'after api': order });
         dispatch({ type: GET_ORDER_BY_ID + SUCCESS, payload: order });
     } catch (error) {
-        dispatch({
-            type: GET_ORDER_BY_ID + FAILURE,
-            payload: handleError({ errorCode: error.status || 500, action: GET_ORDER_BY_ID })
-        })
+        dispatch(handleError({ errorCode: 404, action: GET_ORDER_BY_ID }));
     };
 };
 
-export const resetError = () => ({ type: RESET_REQUEST_ERROR });
+export const resetOrder = () => ({ type: CLEAR_ORDER });
 
-export const getOrders = (token) => async dispatch => {
-    console.log(token)
+export const resetError = () => ({ type: RESET_ERROR });
 
-    try {
-        const orders = await api.getOrders(token);
-        console.log({ orders });
-    } catch (error) {
-        console.log(error);
-    };
-};
+

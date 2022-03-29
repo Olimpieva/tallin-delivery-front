@@ -33,7 +33,7 @@ function OrderSearchPopup({ isOpened, onClose }) {
                         onChange={handleInputChange}
                     />
                 </fieldset>
-                <button className='order-search-popup__button' type='submit'>Отслеживание</button>
+                <button className='order-search-popup__button button' type='submit'>Отслеживание</button>
             </form>
         </Popup>
     );

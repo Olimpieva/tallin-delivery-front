@@ -26,6 +26,8 @@ function NewOrder(props) {
         isFormValid: true
     });
 
+    console.log({ errors })
+
     const handleCreateOrder = async (event) => {
         event.preventDefault();
         dispatch(createOrder({ name, phone, comment }));
@@ -43,7 +45,7 @@ function NewOrder(props) {
                 <h2 className='new-order__title'>Создать заказ</h2>
                 <form className='new-order__form' onSubmit={handleCreateOrder}>
                     <fieldset className='new-order__fieldset fieldset'>
-                        <input className="new-order__input" id="name"
+                        <input className={`input new-order__input ${errors.name && 'input_invalid'}`} id="name"
                             type='text'
                             name='name'
                             placeholder='Имя'
@@ -53,11 +55,11 @@ function NewOrder(props) {
                             value={name}
                             onChange={handleChange}
                         />
-                        <FormError essage={errors.name} />
+                        <FormError message={errors.name} />
                     </fieldset>
 
                     <fieldset className='new-order__fieldset fieldset'>
-                        <input className="new-order__input" id="phone"
+                        <input className={`input new-order__input ${errors.phone && 'input_invalid'}`} id="phone"
                             type='tel'
                             name='phone'
                             placeholder='Телефон'
@@ -71,7 +73,7 @@ function NewOrder(props) {
                     </fieldset>
 
                     <fieldset className='new-order__fieldset fieldset'>
-                        <input className="new-order__input" id="comment"
+                        <input className={`input new-order__input ${errors.comment && 'input_invalid'}`} id="comment"
                             type='text'
                             name='comment'
                             placeholder='Комментарий'
@@ -79,9 +81,10 @@ function NewOrder(props) {
                             value={comment}
                             onChange={handleChange}
                         />
+                        <FormError message={errors.comment} />
                     </fieldset>
 
-                    <button className='new-order__button' type='submit' disabled={!isFormValid}>Заказать</button>
+                    <button className='button new-order__button' type='submit' disabled={!isFormValid}>Заказать</button>
                 </form>
                 <NotificationPopup newOrderId={newOrderFromApi?.id} onClose={handleClosePopup} />
                 <ErrorPopup message={error} />

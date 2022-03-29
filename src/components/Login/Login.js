@@ -34,7 +34,7 @@ function Login(props) {
                 <form className='login__form form' onSubmit={handleLogin}>
 
                     <fieldset className='login__fieldset fieldset'>
-                        <input className="login__input" id="username"
+                        <input className={`input login__input ${errors.username && 'input_invalid'}`} id="username"
                             type='text'
                             name='username'
                             placeholder='login'
@@ -48,7 +48,7 @@ function Login(props) {
                     </fieldset>
 
                     <fieldset className='login__fieldset fieldset'>
-                        <input className="login__input" id="password"
+                        <input className={`input login__input ${errors.password && 'input_invalid'}`} id="password"
                             type='password'
                             name='password'
                             placeholder='password'
@@ -61,7 +61,7 @@ function Login(props) {
                         <FormError message={errors.password} />
                     </fieldset>
 
-                    <button className='login__button' type='submit' disabled={!isFormValid}>Sign In</button>
+                    <button className='button login__button' type='submit' disabled={!isFormValid}>Sign In</button>
                 </form>
                 <ErrorPopup message={error} />
             </main>

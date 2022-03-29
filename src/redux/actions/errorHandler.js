@@ -1,4 +1,4 @@
-import { FAILURE, GET_ORDER_BY_ID } from "./actionTypes";
+import { FAILURE } from "./actionTypes";
 import { requestErrorMessages } from "../../utils/constants";
 
 const handleError = ({ errorCode = 500, action }) => {

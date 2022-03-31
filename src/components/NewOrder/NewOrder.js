@@ -52,8 +52,9 @@ function NewOrder() {
                             required
                             value={name}
                             onChange={handleChange}
+                            data-name={'username-input'}
                         />
-                        <FormError message={errors.name} />
+                        <FormError message={errors.name} dataName={'username-input-error'} />
                     </fieldset>
 
                     <fieldset className='new-order__fieldset fieldset'>
@@ -66,8 +67,9 @@ function NewOrder() {
                             required
                             value={phone}
                             onChange={handleChange}
+                            data-name={'phone-input'}
                         />
-                        <FormError message={errors.phone} />
+                        <FormError message={errors.phone} dataName={'phone-input-error'} />
                     </fieldset>
 
                     <fieldset className='new-order__fieldset fieldset'>
@@ -78,14 +80,15 @@ function NewOrder() {
                             maxLength="20"
                             value={comment}
                             onChange={handleChange}
+                            data-name={'comment-input'}
                         />
-                        <FormError message={errors.comment} />
+                        <FormError message={errors.comment} dataName={'comment-input-error'} />
                     </fieldset>
 
-                    <button className='button new-order__button' type='submit' disabled={!isFormValid}>Заказать</button>
+                    <button className='button new-order__button' type='submit' data-name={'createOrder-button'} disabled={!isFormValid}>Заказать</button>
                 </form>
-                <NotificationPopup newOrderId={newOrderFromApi?.id} onClose={handleClosePopup} />
-                <ErrorPopup message={error} />
+                <NotificationPopup dataName={'orderSuccessfullyCreated-popup'} newOrderId={newOrderFromApi?.id} onClose={handleClosePopup} />
+                <ErrorPopup message={error} dataName={'orderCreationError-popup'} />
             </main>
         </div>
     );

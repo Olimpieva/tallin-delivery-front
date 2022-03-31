@@ -21,7 +21,7 @@ function OrderSearchPopup({ isOpened, onClose }) {
     };
 
     return (
-        <Popup isOpened={isOpened} onClose={onClose}>
+        <Popup isOpened={isOpened} onClose={onClose} dataName={'searchOrder-popup'}>
             <form className='order-search-popup__form' onSubmit={handleOrderSearch}>
                 <fieldset className='order-search-popup__fieldset'>
                     <label className='order-search-popup__label'>Введите номер заказа</label>
@@ -31,9 +31,10 @@ function OrderSearchPopup({ isOpened, onClose }) {
                         required
                         value={orderId}
                         onChange={handleInputChange}
+                        data-name={'searchOrder-input'}
                     />
                 </fieldset>
-                <button className='order-search-popup__button button' type='submit'>Отслеживание</button>
+                <button className='order-search-popup__button button' data-name={'searchOrder-submitButton'} type='submit'>Отслеживание</button>
             </form>
         </Popup>
     );

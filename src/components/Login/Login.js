@@ -52,8 +52,9 @@ function Login() {
                             required
                             value={username}
                             onChange={handleChange}
+                            data-name={"username-input"}
                         />
-                        <FormError message={errors.username} />
+                        <FormError message={errors.username} dataName={'username-input-error'} />
                     </fieldset>
 
                     <fieldset className='login__fieldset fieldset'>
@@ -66,13 +67,14 @@ function Login() {
                             required
                             value={password}
                             onChange={handleChange}
+                            data-name={'password-input'}
                         />
-                        <FormError message={errors.password} />
+                        <FormError message={errors.password} dataName={'username-input-error'}/>
                     </fieldset>
 
-                    <button className='button login__button' type='submit' disabled={!isFormValid}>Sign In</button>
+                    <button className='button login__button' type='submit' data-name={'signIn-button'} disabled={!isFormValid}>Sign In</button>
                 </form>
-                <ErrorPopup message={error} />
+                <ErrorPopup dataName={'authorizationError-popup'} message={error} />
             </main>
         </div>
     );

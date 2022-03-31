@@ -17,7 +17,7 @@ const initialOrderState = {
     comment: '',
 };
 
-function NewOrder(props) {
+function NewOrder() {
 
     const dispatch = useDispatch();
     const { order: newOrderFromApi, error } = useSelector(newOrderSelector);
@@ -25,8 +25,6 @@ function NewOrder(props) {
         values: initialOrderState,
         isFormValid: true
     });
-
-    console.log({ errors })
 
     const handleCreateOrder = async (event) => {
         event.preventDefault();

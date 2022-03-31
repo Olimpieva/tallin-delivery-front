@@ -1,6 +1,8 @@
 .login-page {
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .login {
@@ -35,18 +37,17 @@
 .input {
     width: 100%;
     box-sizing: border-box;
+    outline: none;
     border: 1px solid #333333;
     border-radius: 6px;
     transition: all .2s ease-in-out;
 }
 
 .input:focus {
-    outline: none;
     border: 1px solid #333333;
 }
 
 .input_invalid, .input_invalid:focus {
-    outline: none;
     border-color: #F10E0E;
 }
 

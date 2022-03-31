@@ -8,7 +8,7 @@ import './OrderSearchPopup.css';
 function OrderSearchPopup({ isOpened, onClose }) {
 
     const navigate = useNavigate();
-    const [orderId, setOrderId] = useState(null);
+    const [orderId, setOrderId] = useState('');
 
     const handleInputChange = (event) => {
         setOrderId(event.target.value);
@@ -29,7 +29,7 @@ function OrderSearchPopup({ isOpened, onClose }) {
                         type='number'
                         name='id'
                         required
-                        value={orderId || ''}
+                        value={orderId}
                         onChange={handleInputChange}
                     />
                 </fieldset>

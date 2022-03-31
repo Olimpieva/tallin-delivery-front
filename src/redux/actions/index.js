@@ -16,7 +16,7 @@ export const setLoggedIn = () => ({ type: LOGIN + SUCCESS });
 
 export const checkToken = () => async (dispatch, getState) => {
 
-    const { loading } = getState();
+    const { user: { loading } } = getState();
 
     dispatch({ type: LOGIN + REQUEST });
 
@@ -40,7 +40,7 @@ export const checkToken = () => async (dispatch, getState) => {
 
 export const login = (userData) => async (dispatch, getState) => {
 
-    const { loading } = getState();
+    const { user: { loading } } = getState();
 
     dispatch({ type: LOGIN + REQUEST });
 
@@ -73,7 +73,7 @@ export const createOrder = (orderData) => async dispatch => {
 };
 
 export const getOrderById = (orderData) => async (dispatch, getState) => {
-    const { loading } = getState();
+    const { currentOrder: { loading } } = getState();
 
     if (loading) {
         return;

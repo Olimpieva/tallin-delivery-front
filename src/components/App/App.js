@@ -22,23 +22,26 @@ function App() {
     dispatch(checkToken());
   }, [dispatch]);
 
+  if (user.loggedIn === null) {
+    return (
+      <div className="app">
+        <div className='app__preloader'>
+          <Preloader />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="app">
-      {
-        user.loading || user.loggedIn === null ?
-          <div className='app__preloader'>
-            <Preloader />
-          </div>
-          :
-          <Routes>
-            <Route element={<ProtectedRoute loggedIn={user.loggedIn} />} >
-              <Route path="/" element={<NewOrder />} />
-              <Route path="/order/:id" element={<OrderDetails />} />
-            </Route>
-            <Route path="/signin" element={user.loggedIn ? <Navigate replace to="/" /> : <Login />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-      }
+      <Routes>
+        <Route element={<ProtectedRoute loggedIn={user.loggedIn} />} >
+          <Route path="/" element={<NewOrder />} />
+          <Route path="/order/:id" element={<OrderDetails />} />
+        </Route>
+        <Route path="/signin" element={user.loggedIn ? <Navigate replace to="/" /> : <Login />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

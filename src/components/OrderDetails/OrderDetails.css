@@ -63,7 +63,11 @@
     list-style-type: none;
 }
 
-.status-list__item {
+.status-list__item:last-of-type .status-list__line {
+    display: none;
+}
+
+.status-list__info {
     display: flex;
 }
 

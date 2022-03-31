@@ -7,16 +7,17 @@ import { useValidation } from '../../utils/useValidation';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
 import FormError from '../FormError/FormError';
 import Header from '../Header/Header';
+import Preloader from '../Preloader/Preloader';
 
 import './Login.css';
 
 const initialState = { username: "", password: "" };
 
-function Login(props) {
+function Login() {
 
     const dispatch = useDispatch();
-    const { error } = useSelector(currentUserSelector);
-    const { values: { username, password }, errors, isFormValid, handleChange, resetForm } = useValidation({
+    const { error, loading } = useSelector(currentUserSelector);
+    const { values: { username, password }, errors, isFormValid, handleChange } = useValidation({
         values: initialState,
         isFormValid: true
     });
@@ -24,7 +25,15 @@ function Login(props) {
     const handleLogin = async (event) => {
         event.preventDefault();
         dispatch(login({ username, password }));
-        resetForm(initialState);
+    };
+
+    if (loading) {
+        return (
+            <div className='login-page'>
+                <Header hideInfo />
+                <Preloader />
+            </div>
+        );
     };
 
     return (

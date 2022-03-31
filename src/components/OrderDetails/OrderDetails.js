@@ -24,7 +24,7 @@ function OrderDetails(props) {
 
     const renderOrderDetails = () => userFields.map(({ title, field }, index) => {
         return (
-            <li className='order-list__item' key={`order-item_${index}`}>
+            <li className='order-list__item' key={`order-item_${index}`} data-name={`order-item-${index}`}>
                 <h3 className='order-list__title'>{title}</h3>
                 <span className='order-list__description'>{order[field]}</span>
             </li>
@@ -34,7 +34,7 @@ function OrderDetails(props) {
 
     const renderStatusDetails = () => statusFields.map(({ name, description }, index) => {
         return (
-            <li className='status-list__item' key={`status-item_${index}`}>
+            <li className='status-list__item' key={`status-item_${index}`} data-name={`status-item-${index}`}>
                 <div className='status-list__info'>
                     <span className={`status-list__status ${order.status === defaultOrderStatus[name] && 'status-list__status_active'}`}>
                         {name}
@@ -64,7 +64,7 @@ function OrderDetails(props) {
         <div className='order-details-page'>
             <Header />
             <main className='order-details'>
-                <input className='order-details__input'></input>
+                <input className='order-details__input' data-name={'useless-input'}></input>
                 <div className='order-details__content'>
                     <ul className='order-details__order-list order-list'>
                         {renderOrderDetails()}

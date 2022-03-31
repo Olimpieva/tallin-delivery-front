@@ -2,10 +2,10 @@ import React from "react";
 
 import './FormError.css'
 
-function FormError({ message }) {
+function FormError({ message, dataName }) {
 
     return (
-        <span className={`form-error ${message && 'form-error_active'}`}>{message}</span>
+        <span className={`form-error ${message && 'form-error_active'}`} data-name={dataName}>{message}</span>
     );
 };
 

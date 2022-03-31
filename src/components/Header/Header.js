@@ -27,7 +27,7 @@ function Header({ hideTitle = false, hideInfo = false }) {
     return (
         <div className="header">
             <div className='logo_main'>
-                <Link to="/" title="Главная страница" className='logo_main__image' />
+                <Link to="/" title="Главная страница" className='logo_main__image' data-name={'mainPage-link'} />
                 <span className={`logo_main__text ${!hideInfo && 'logo_main__text_shown'}`}>Тренажёр</span>
             </div>
             {!hideTitle &&
@@ -37,8 +37,8 @@ function Header({ hideTitle = false, hideInfo = false }) {
                 </h1>
             }
             <div className={`header__buttons ${!hideInfo && 'header__buttons_shown'}`}>
-                <button className='header__button_check-order' onClick={handleOpenPopup}>Статус</button>
-                <Link to="/signin" title="Выход из аккаунта" className="header__button_exit" onClick={exitButtonClickHandler} />
+                <button className='header__button_check-order' onClick={handleOpenPopup} data-name={'openStatusPopup-button'}>Статус</button>
+                <Link to="/signin" title="Выход из аккаунта" className="header__button_exit" data-name={'logout-button'} onClick={exitButtonClickHandler} />
             </div>
             <OrderSearchPopup isOpened={isOrderSearchPopupOpened} onClose={handleClosePopup} />
         </div>

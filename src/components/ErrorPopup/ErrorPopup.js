@@ -6,7 +6,7 @@ import Popup from '../Popup/Popup';
 
 import './ErrorPopup.css';
 
-function ErrorPopup({ message }) {
+function ErrorPopup({ message, dataName }) {
 
     const dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ function ErrorPopup({ message }) {
     };
 
     return (
-        <Popup isOpened={message} onClose={handleClosePopup}>
+        <Popup dataName={dataName} isOpened={message} onClose={handleClosePopup}>
             <span className='error-popup__text'>{message}</span>
         </Popup>
     );

@@ -10,7 +10,7 @@ function NotFound({ title = 'Страница не найдена', message = ''
     return (
         <div className='not-found-page'>
             <Header hideTitle />
-            <main className='not-found'>
+            <main className='not-found' data-name={'orderNotFound-container'}>
                 <h1 className='not-found__title'>{title}</h1>
                 <span className='not-found__description'>{message}</span>
                 <NotFoundImage className='not-found__image' />
